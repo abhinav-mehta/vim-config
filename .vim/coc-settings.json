@@ -1,0 +1,4 @@
+{
+	"diagnostic.checkCurrentLine": true,
+	"clangd.fallbackFlags": [ "-std=c++17" ]
+}
