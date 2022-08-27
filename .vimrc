@@ -12,7 +12,7 @@ set nomodeline
 call plug#begin()
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'mbbill/undotree'
 Plug 'sheerun/vim-polyglot'
 Plug 'ryanoasis/vim-devicons'
