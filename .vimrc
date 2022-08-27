@@ -1,6 +1,5 @@
 set nomodeline
 
-" init
 call plug#begin()
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -14,7 +13,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'sainnhe/sonokai'
 call plug#end()
 
-" basic 
 set number
 set cursorline
 set tabstop=4
@@ -23,26 +21,25 @@ set listchars=tab:\|\
 set list
 let g:netrw_dirhistmax = 0
 
-" fzf 
 let g:fzf_layout = {'down':'40%'}
 
-" coc 
 let g:coc_global_extensions = ['coc-json', 'coc-sh', 'coc-vimlsp', 'coc-clangd', 'coc-go']
 
-" tagbar 
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+
 let g:tagbar_expand = 1
 
-" airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'sonokai'
 
-" theme
 let g:sonokai_style = 'espresso'
 let g:sonokai_better_performance = 1
 let g:sonokai_menu_selection_background = 'green'
 colorscheme sonokai
 
-" bindings
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
@@ -60,7 +57,6 @@ nnoremap <silent> <leader>u :UndotreeToggle<CR>
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>t :TagbarToggle<CR>
 
-" autoexec
 autocmd FileType cpp,hpp,go autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " UNDER REVIEW
