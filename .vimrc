@@ -10,10 +10,11 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 set nomodeline
 
 call plug#begin()
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', {'do':{->fzf#install()}}
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'mbbill/undotree'
+Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
@@ -28,6 +29,8 @@ set tabstop=4
 set shiftwidth=4
 set listchars=tab:\|\ 
 set list
+set encoding=UTF-8
+set clipboard^=unnamed,unnamedplus
 let g:netrw_dirhistmax = 0
 
 let g:fzf_layout = {'down':'40%'}
@@ -40,6 +43,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 
 let g:tagbar_expand = 1
+let g:tagbar_autofocus = 1
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'sonokai'
@@ -49,24 +53,26 @@ let g:sonokai_better_performance = 1
 let g:sonokai_menu_selection_background = 'green'
 colorscheme sonokai
 
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
 nmap <Enter> o<ESC>
-nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>p :Rg<CR>
+nnoremap <silent> <leader>q :Files<CR>
+nnoremap <silent> <leader>w :Rg<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>w :Tabs<CR>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>t :TagbarToggle<CR>
 
 autocmd FileType cpp,hpp,go autocmd BufWritePre <buffer> %s/\s\+$//e
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " UNDER REVIEW
 
@@ -103,17 +109,6 @@ if has('nvim')
 else
 	inoremap <silent><expr> <c-@> coc#refresh()
 endif
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
